@@ -18,8 +18,8 @@ function createDataObject(name, hobby) {
   }
 
   function clearInputFields() {
-    DOMSelectors.nameInput.value = '';
-    DOMSelectors.hobbyInput.value = '';
+    DOMSelectors.nameInput.value = 'x';
+    DOMSelectors.hobbyInput.value = 'y';
   }
 
   function removeDataObject(event) {
@@ -40,3 +40,5 @@ function createDataObject(name, hobby) {
   });
 
   DOMSelectors.dataList.addEventListener('click', removeDataObject);
+
+
