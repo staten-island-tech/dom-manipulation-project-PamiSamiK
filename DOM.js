@@ -12,7 +12,7 @@ function createDataObject(name, hobby) {
 
   function injectDataObject(dataObject) {
     const dataItem = document.createElement('div');
-    dataItem.innerHTML = `<strong>Name:</strong> ${dataObject.name}, <strong>Email:</strong> ${dataObject.email}
+    dataItem.innerHTML = `<strong>Name:</strong> ${dataObject.name}, <strong>hobby:</strong> ${dataObject.hobby}
     <button class="remove-data">Remove</button>`;
     DOMSelectors.dataList.appendChild(dataItem);
   }
