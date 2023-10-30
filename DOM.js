@@ -1,42 +1,35 @@
-const DomSelectors = {
-    form: document.getElementById('p'),
-    nameInput: document.getElementById(`a`),
-    hobbyInput: document.getElementById('m'),
-    addDataButton: document.getElementById('i'),
-    dataList: document.getElementById('s'),
-}
+const DOMSelectors = {
+  form: document.getElementById('myForm'),
+  nameInput: document.getElementById('name'),
+  hobbyInput: document.getElementById('hobby'),
+  submitButton: document.getElementById('submit'),
+  outputDiv: document.getElementById('output')
+};
 
-function createDataObject(name, hobby) {
-    return { name, hobby};
-  }
 
-  function injectDataObject(dataObject) {
-    const dataItem = document.createElement('div');
-    dataItem.innerHTML = `<strong>Name:</strong> ${dataObject.name}, <strong>Email:</strong> ${dataObject.email}
-    <button class="remove-data">Remove</button>`;
-    DOMSelectors.dataList.appendChild(dataItem);
-  }
+DOMSelectors.form.addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the default form submission behavior
 
-  function clearInputFields() {
-    DOMSelectors.nameInput.value = '';
-    DOMSelectors.hobbyInput.value = '';
-  }
+  // Get user input from form
+  const name = DOMSelectors.nameInput.value;
+  const hobby = DOMSelectors.hobbyInput.value;
 
-  function removeDataObject(event) {
-    if (event.target.classList.contains('remove-data')) {
-      event.target.parentElement.remove();
-    }
-  }
+  // Create a JavaScript object with the user's data
+  const userData = {
+      name: name,
+      hobby: hobby
+  };
 
-  DOMSelectors.addDataButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    const name = DOMSelectors.nameInput.value;
-    const hobby = DOMSelectors.emailInput.value;
-    if (name && hobby) {
-      const dataObject = createDataObject(name, hobby);
-      injectDataObject(dataObject);
-      clearInputFields();
-    }
-  });
+  // Create HTML content to display the user's data
+  const userDataHTML = `
+      <p>Name: ${userData.name}</p>
+      <p>Hobby: ${userData.hobby}</p>
+  `;
 
-  DOMSelectors.dataList.addEventListener('click', removeDataObject);
+  // Append the HTML content to the output div
+  DOMSelectors.outputDiv.innerHTML = userDataHTML;
+
+  // Clear the form inputs
+  DOMSelectors.nameInput.value = '';
+  DOMSelectors.hobbyInput.value = '';
+});
