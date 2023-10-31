@@ -39,3 +39,14 @@ DOMSelectors.form.addEventListener('submit', function (event) {
   DOMSelectors.genreInput.value = '';
   DOMSelectors.albumInput.value = '';
 });
+  
+function inject(alb) {
+  DOMSelectors.page.insertAdjacentHTML(
+    "beforeend",
+    <div class="box">
+    <h2>${alb.artist}</h2>
+    <h3>${alb.genre}</h3>
+    <h4>${alb.album}</h4>
+    </div>
+  )
+} 
