@@ -8,22 +8,23 @@ const DOMSelectors = {
 };
 
 function injectCard(wholeAlbum) {
-  const cardDiv = document.createElement("div");
-  cardDiv.className = "card";
-
-  cardDiv.innerHTML = `
-    <h2>${wholeAlbum.artist}</h2>
-    <h3>${wholeAlbum.genre}</h3>
-    <h3>${wholeAlbum.album}</h3>
-    <img src="${wholeAlbum.image}" alt="${wholeAlbum.album}" class="album-image">
-    <button class="remove-button">Remove</button>
+  const cardHTML = `
+    <div class="card">
+      <h2>${wholeAlbum.artist}</h2>
+      <h3>${wholeAlbum.genre}</h3>
+      <h3>${wholeAlbum.album}</h3>
+      <img src="${wholeAlbum.image}" alt="${wholeAlbum.album}" class="album-image">
+      <button class="remove-button">Remove</button>
+    </div>
   `;
 
-  DOMSelectors.gallery.appendChild(cardDiv);
+  DOMSelectors.gallery.insertAdjacentHTML('beforeend', cardHTML);
 
-  const removeButton = cardDiv.querySelector(".remove-button");
-  removeButton.addEventListener("click", function() {
-    cardDiv.remove(); 
+  const removeButtons = document.querySelectorAll(".remove-button");
+  removeButtons.forEach(removeButton => {
+    removeButton.addEventListener("click", function() {
+      this.closest('.card').remove(); 
+    });
   });
 }
 
@@ -39,14 +40,3 @@ DOMSelectors.form.addEventListener("submit", function(event){
 
   injectCard(wholeAlbum);
 });
-
-
-
-
-
-
-
-
-
-
-
